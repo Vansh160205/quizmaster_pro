@@ -1,0 +1,29 @@
+{% extends 'core/dashboard/dashboard_base.html' %}
+
+{% block title %}Delete Event - QuizMaster Pro{% endblock %}
+
+{% block dashboard_content %}
+<div class="max-w-lg mx-auto mt-12">
+    <div class="bg-white rounded-xl shadow p-8 text-center">
+        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+            </svg>
+        </div>
+        
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Delete Event?</h2>
+        <p class="text-gray-600 mb-2">Are you sure you want to delete:</p>
+        <p class="text-lg font-semibold text-gray-800 mb-6">"{{ event.title }}"</p>
+        
+        <form method="POST" class="flex justify-center space-x-4">
+            {% csrf_token %}
+            <button type="submit" class="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition">
+                Yes, Delete Event
+            </button>
+            <a href="{% url 'my_events' %}" class="bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 transition">
+                Cancel
+            </a>
+        </form>
+    </div>
+</div>
+{% endblock %}

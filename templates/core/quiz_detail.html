@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ quiz.title }} - QuizMaster Pro{% endblock %}
+
+{% block content %}
+<section class="py-12">
+    <div class="max-w-3xl mx-auto px-4">
+        <!-- Quiz Card -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="bg-gradient-to-r from-primary to-secondary h-3"></div>
+            <div class="p-8">
+                <!-- Quiz Header -->
+                <div class="text-center mb-8">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-4">{{ quiz.title }}</h1>
+                    <p class="text-gray-600">{{ quiz.description }}</p>
+                </div>
+
+                <!-- Quiz Info -->
+                <div class="grid grid-cols-3 gap-4 mb-8">
+                    <div class="bg-gray-50 rounded-lg p-4 text-center">
+                        <div class="text-2xl font-bold text-primary">{{ questions_count }}</div>
+                        <div class="text-sm text-gray-600">Questions</div>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-4 text-center">
+                        <div class="text-2xl font-bold text-primary">{{ questions_count }}</div>
+                        <div class="text-sm text-gray-600">Total Points</div>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-4 text-center">
+                        <div class="text-2xl font-bold text-primary">∞</div>
+                        <div class="text-sm text-gray-600">Time Limit</div>
+                    </div>
+                </div>
+
+                <!-- Instructions -->
+                <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-8">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <svg class="h-5 w-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="text-sm font-medium text-blue-800">Instructions</h3>
+                            <ul class="mt-2 text-sm text-blue-700 list-disc list-inside">
+                                <li>Answer all questions to complete the quiz</li>
+                                <li>Each correct answer is worth 1 point</li>
+                                <li>You cannot change your answers after submission</li>
+                                <li>Your results will be displayed immediately</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Start Button -->
+                <div class="text-center">
+                    {% if questions_count > 0 %}
+                    <a href="{% url 'quiz_attempt' quiz.id %}" class="inline-block bg-primary text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-secondary transition transform hover:scale-105 shadow-lg">
+                        Start Quiz Now
+                    </a>
+                    {% else %}
+                    <p class="text-gray-500 mb-4">This quiz has no questions yet.</p>
+                    <a href="{% url 'quiz_list' %}" class="text-primary font-semibold hover:text-secondary">
+                        ← Back to Quiz List
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Back Link -->
+        <div class="text-center mt-6">
+            <a href="{% url 'quiz_list' %}" class="text-gray-600 hover:text-primary transition">
+                ← Back to All Quizzes
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

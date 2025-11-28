@@ -1,0 +1,524 @@
+[
+    {
+        "model": "core.quiz",
+        "pk": 1,
+        "fields": {
+            "title": "Python Basics",
+            "description": "Test your knowledge of Python programming fundamentals including variables, data types, loops, and functions. Perfect for beginners!",
+            "is_published": true,
+            "created_at": "2024-01-15T10:00:00Z",
+            "updated_at": "2024-01-15T10:00:00Z"
+        }
+    },
+    {
+        "model": "core.quiz",
+        "pk": 2,
+        "fields": {
+            "title": "Web Development Fundamentals",
+            "description": "Challenge yourself with questions about HTML, CSS, JavaScript, and modern web development concepts.",
+            "is_published": true,
+            "created_at": "2024-01-16T10:00:00Z",
+            "updated_at": "2024-01-16T10:00:00Z"
+        }
+    },
+    {
+        "model": "core.quiz",
+        "pk": 3,
+        "fields": {
+            "title": "Django Framework",
+            "description": "Test your understanding of Django framework including models, views, templates, and ORM.",
+            "is_published": true,
+            "created_at": "2024-01-17T10:00:00Z",
+            "updated_at": "2024-01-17T10:00:00Z"
+        }
+    },
+    {
+        "model": "core.quiz",
+        "pk": 4,
+        "fields": {
+            "title": "JavaScript Advanced",
+            "description": "Advanced JavaScript concepts including ES6+, async/await, promises, and modern JavaScript patterns.",
+            "is_published": true,
+            "created_at": "2024-01-18T10:00:00Z",
+            "updated_at": "2024-01-18T10:00:00Z"
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 1,
+        "fields": {
+            "quiz": 1,
+            "text": "What is the correct way to declare a variable in Python?",
+            "question_type": "MCQ",
+            "order": 1,
+            "created_at": "2024-01-15T10:00:00Z"
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 2,
+        "fields": {
+            "quiz": 1,
+            "text": "Which of the following is a mutable data type in Python?",
+            "question_type": "MCQ",
+            "order": 2,
+            "created_at": "2024-01-15T10:00:00Z"
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 3,
+        "fields": {
+            "quiz": 1,
+            "text": "What keyword is used to define a function in Python?",
+            "question_type": "MCQ",
+            "order": 3,
+            "created_at": "2024-01-15T10:00:00Z"
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 4,
+        "fields": {
+            "quiz": 2,
+            "text": "What does HTML stand for?",
+            "question_type": "MCQ",
+            "order": 1,
+            "created_at": "2024-01-16T10:00:00Z"
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 5,
+        "fields": {
+            "quiz": 2,
+            "text": "Which CSS property is used to change the text color?",
+            "question_type": "MCQ",
+            "order": 2,
+            "created_at": "2024-01-16T10:00:00Z"
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 6,
+        "fields": {
+            "quiz": 3,
+            "text": "What is the Django ORM?",
+            "question_type": "MCQ",
+            "order": 1,
+            "created_at": "2024-01-17T10:00:00Z"
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 7,
+        "fields": {
+            "quiz": 3,
+            "text": "Which file contains Django project settings?",
+            "question_type": "MCQ",
+            "order": 2,
+            "created_at": "2024-01-17T10:00:00Z"
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 8,
+        "fields": {
+            "quiz": 4,
+            "text": "What is a Promise in JavaScript?",
+            "question_type": "MCQ",
+            "order": 1,
+            "created_at": "2024-01-18T10:00:00Z"
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 9,
+        "fields": {
+            "quiz": 4,
+            "text": "What does the 'async' keyword do in JavaScript?",
+            "question_type": "MCQ",
+            "order": 2,
+            "created_at": "2024-01-18T10:00:00Z"
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 1,
+        "fields": {
+            "question": 1,
+            "text": "var x = 5",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 2,
+        "fields": {
+            "question": 1,
+            "text": "x = 5",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 3,
+        "fields": {
+            "question": 1,
+            "text": "int x = 5",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 4,
+        "fields": {
+            "question": 1,
+            "text": "let x = 5",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 5,
+        "fields": {
+            "question": 2,
+            "text": "Tuple",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 6,
+        "fields": {
+            "question": 2,
+            "text": "String",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 7,
+        "fields": {
+            "question": 2,
+            "text": "List",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 8,
+        "fields": {
+            "question": 2,
+            "text": "Integer",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 9,
+        "fields": {
+            "question": 3,
+            "text": "function",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 10,
+        "fields": {
+            "question": 3,
+            "text": "def",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 11,
+        "fields": {
+            "question": 3,
+            "text": "func",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 12,
+        "fields": {
+            "question": 3,
+            "text": "define",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 13,
+        "fields": {
+            "question": 4,
+            "text": "Hyper Text Markup Language",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 14,
+        "fields": {
+            "question": 4,
+            "text": "High Tech Modern Language",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 15,
+        "fields": {
+            "question": 4,
+            "text": "Hyper Transfer Markup Language",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 16,
+        "fields": {
+            "question": 4,
+            "text": "Home Tool Markup Language",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 17,
+        "fields": {
+            "question": 5,
+            "text": "font-color",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 18,
+        "fields": {
+            "question": 5,
+            "text": "color",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 19,
+        "fields": {
+            "question": 5,
+            "text": "text-color",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 20,
+        "fields": {
+            "question": 5,
+            "text": "fgcolor",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 21,
+        "fields": {
+            "question": 6,
+            "text": "A JavaScript framework",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 22,
+        "fields": {
+            "question": 6,
+            "text": "Object-Relational Mapping for database operations",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 23,
+        "fields": {
+            "question": 6,
+            "text": "A CSS preprocessor",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 24,
+        "fields": {
+            "question": 6,
+            "text": "A testing framework",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 25,
+        "fields": {
+            "question": 7,
+            "text": "config.py",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 26,
+        "fields": {
+            "question": 7,
+            "text": "settings.py",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 27,
+        "fields": {
+            "question": 7,
+            "text": "django.py",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 28,
+        "fields": {
+            "question": 7,
+            "text": "app.py",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 29,
+        "fields": {
+            "question": 8,
+            "text": "A way to handle synchronous operations",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 30,
+        "fields": {
+            "question": 8,
+            "text": "An object representing eventual completion or failure of an async operation",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 31,
+        "fields": {
+            "question": 8,
+            "text": "A new data type in ES6",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 32,
+        "fields": {
+            "question": 8,
+            "text": "A function that returns immediately",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 33,
+        "fields": {
+            "question": 9,
+            "text": "Makes a function run faster",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 34,
+        "fields": {
+            "question": 9,
+            "text": "Declares a function that returns a Promise",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 35,
+        "fields": {
+            "question": 9,
+            "text": "Makes a function synchronous",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 36,
+        "fields": {
+            "question": 9,
+            "text": "Prevents function from being called",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "core.event",
+        "pk": 1,
+        "fields": {
+            "title": "Python Workshop 2025",
+            "description": "Join us for an interactive Python programming workshop covering advanced topics like decorators, generators, and async programming. Perfect for intermediate developers looking to level up!",
+            "date": "2025-03-15T14:00:00Z",
+            "location": "Tech Hub Conference Center, Building A, Room 101",
+            "created_at": "2024-01-15T10:00:00Z"
+        }
+    },
+    {
+        "model": "core.event",
+        "pk": 2,
+        "fields": {
+            "title": "Web Development Bootcamp",
+            "description": "A comprehensive 2-day bootcamp covering modern web development with HTML5, CSS3, JavaScript, and popular frameworks like React and Vue.",
+            "date": "2025-04-01T09:00:00Z",
+            "location": "Innovation Lab, Downtown Campus, Floor 2",
+            "created_at": "2024-01-16T10:00:00Z"
+        }
+    },
+    {
+        "model": "core.event",
+        "pk": 3,
+        "fields": {
+            "title": "Django Developers Meetup",
+            "description": "Monthly Django developers meetup. Share your projects, learn best practices, and network with fellow developers. Refreshments provided!",
+            "date": "2025-02-20T18:30:00Z",
+            "location": "CodeSpace Coworking, Floor 3, Main Hall",
+            "created_at": "2024-01-17T10:00:00Z"
+        }
+    },
+    {
+        "model": "core.event",
+        "pk": 4,
+        "fields": {
+            "title": "AI & Machine Learning Conference",
+            "description": "Explore the latest trends in AI and machine learning with industry experts. Hands-on workshops, keynote speakers, and networking opportunities.",
+            "date": "2025-05-10T10:00:00Z",
+            "location": "Grand Convention Center, Main Auditorium",
+            "created_at": "2024-01-18T10:00:00Z"
+        }
+    },
+    {
+        "model": "core.event",
+        "pk": 5,
+        "fields": {
+            "title": "API Design Best Practices",
+            "description": "Learn how to design robust and scalable REST APIs. Covers authentication, versioning, documentation, and testing strategies.",
+            "date": "2025-03-25T15:00:00Z",
+            "location": "Virtual Event - Zoom Webinar",
+            "created_at": "2024-01-19T10:00:00Z"
+        }
+    }
+]

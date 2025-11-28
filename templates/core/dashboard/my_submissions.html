@@ -1,0 +1,69 @@
+{% extends 'core/dashboard/dashboard_base.html' %}
+
+{% block title %}My Submissions - QuizMaster Pro{% endblock %}
+
+{% block dashboard_content %}
+<!-- Page Header -->
+<div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-800">My Quiz Submissions</h1>
+    <p class="text-gray-600 mt-2">View all your quiz attempts and scores</p>
+</div>
+
+{% if submissions %}
+<div class="bg-white rounded-xl shadow overflow-hidden">
+    <table class="w-full">
+        <thead class="bg-gray-100">
+            <tr>
+                <th class="px-6 py-4 text-left text-gray-700 font-semibold">Quiz</th>
+                <th class="px-6 py-4 text-center text-gray-700 font-semibold">Score</th>
+                <th class="px-6 py-4 text-center text-gray-700 font-semibold">Percentage</th>
+                <th class="px-6 py-4 text-right text-gray-700 font-semibold">Date</th>
+                <th class="px-6 py-4 text-center text-gray-700 font-semibold">Action</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+            {% for submission in submissions %}
+            <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4">
+                    <h4 class="font-semibold text-gray-800">{{ submission.quiz.title }}</h4>
+                    <p class="text-sm text-gray-500">{{ submission.quiz.get_questions_count }} questions</p>
+                </td>
+                <td class="px-6 py-4 text-center font-semibold">
+                    {{ submission.score }}/{{ submission.quiz.get_questions_count }}
+                </td>
+                <td class="px-6 py-4 text-center">
+                    <span class="px-3 py-1 rounded-full text-sm font-semibold
+                        {% if submission.get_percentage >= 80 %}bg-green-100 text-green-800
+                        {% elif submission.get_percentage >= 60 %}bg-blue-100 text-blue-800
+                        {% elif submission.get_percentage >= 40 %}bg-yellow-100 text-yellow-800
+                        {% else %}bg-red-100 text-red-800{% endif %}">
+                        {{ submission.get_percentage }}%
+                    </span>
+                </td>
+                <td class="px-6 py-4 text-right text-gray-500 text-sm">
+                    {{ submission.submitted_at|date:"M d, Y" }}<br>
+                    <span class="text-xs">{{ submission.submitted_at|time:"H:i" }}</span>
+                </td>
+                <td class="px-6 py-4 text-center">
+                    <a href="{% url 'quiz_result' submission.id %}" class="text-primary hover:text-secondary font-semibold text-sm">
+                        View Details
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="bg-white rounded-xl shadow p-12 text-center">
+    <svg class="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+    </svg>
+    <h3 class="text-xl font-semibold text-gray-800 mb-2">No Submissions Yet</h3>
+    <p class="text-gray-600 mb-6">Take a quiz to see your results here!</p>
+    <a href="{% url 'quiz_list' %}" class="inline-block bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-secondary transition">
+        Browse Quizzes
+    </a>
+</div>
+{% endif %}
+{% endblock %}

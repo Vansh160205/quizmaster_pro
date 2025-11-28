@@ -1,0 +1,30 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django database
+db.sqlite3
+*.sqlite3
+
+# Virtual environments
+venv/
+.env
+.venv/
+env/
+
+# Django media & collected static (if you run collectstatic)
+media/
+staticfiles/
+static_collected/
+
+# Logs
+*.log
+
+# IDE/editor settings
+.vscode/
+.idea/
+
+# OS junk
+.DS_Store
+Thumbs.db

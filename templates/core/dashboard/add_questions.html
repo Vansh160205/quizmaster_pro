@@ -1,0 +1,141 @@
+{% extends 'core/dashboard/dashboard_base.html' %}
+
+{% block title %}Add Questions - {{ quiz.title }} - QuizMaster Pro{% endblock %}
+
+{% block dashboard_content %}
+<!-- Page Header -->
+<div class="mb-8">
+    <div class="flex items-center text-sm text-gray-500 mb-2">
+        <a href="{% url 'my_quizzes' %}" class="hover:text-primary">My Quizzes</a>
+        <span class="mx-2">→</span>
+        <span>{{ quiz.title }}</span>
+    </div>
+    <h1 class="text-3xl font-bold text-gray-800">Manage Questions</h1>
+    <p class="text-gray-600 mt-2">Add and manage questions for "{{ quiz.title }}"</p>
+</div>
+
+<div class="grid lg:grid-cols-2 gap-8">
+    <!-- Add Question Form -->
+    <div class="bg-white rounded-xl shadow">
+        <div class="p-6 border-b border-gray-100">
+            <h2 class="text-xl font-bold text-gray-800">Add New Question</h2>
+        </div>
+        <div class="p-6">
+            <form method="POST" class="space-y-6">
+                {% csrf_token %}
+                
+                <div>
+                    <label for="id_text" class="block text-sm font-medium text-gray-700 mb-2">
+                        Question Text <span class="text-red-500">*</span>
+                    </label>
+                    {{ form.text }}
+                </div>
+                
+                <div>
+                    <label for="id_question_type" class="block text-sm font-medium text-gray-700 mb-2">
+                        Question Type
+                    </label>
+                    {{ form.question_type }}
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-4">
+                        Answer Options <span class="text-red-500">*</span>
+                    </label>
+                    <p class="text-sm text-gray-500 mb-4">Enter up to 4 answer options and select the correct one.</p>
+                    
+                    <div class="space-y-3">
+                        {% for i in "1234" %}
+                        <div class="flex items-center space-x-3">
+                            <input type="radio" name="correct_answer" value="{{ i }}" 
+                                class="w-4 h-4 text-primary focus:ring-primary" {% if i == "1" %}required{% endif %}>
+                            <input type="text" name="answer_{{ i }}" 
+                                placeholder="Answer option {{ i }}"
+                                class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                                {% if i == "1" or i == "2" %}required{% endif %}>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">Select the radio button next to the correct answer.</p>
+                </div>
+                
+                <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-secondary transition">
+                    Add Question
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Existing Questions -->
+    <div class="bg-white rounded-xl shadow">
+        <div class="p-6 border-b border-gray-100">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-bold text-gray-800">Questions ({{ questions|length }})</h2>
+                {% if questions %}
+                <a href="{% url 'quiz_detail' quiz.id %}" class="text-primary text-sm hover:text-secondary" target="_blank">
+                    Preview Quiz →
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="p-6 max-h-[600px] overflow-y-auto">
+            {% if questions %}
+            <div class="space-y-4">
+                {% for question in questions %}
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="flex items-start">
+                            <span class="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 flex-shrink-0">
+                                {{ forloop.counter }}
+                            </span>
+                            <h4 class="font-medium text-gray-800">{{ question.text }}</h4>
+                        </div>
+                        <form method="POST" action="{% url 'delete_question' question.id %}" class="inline">
+                            {% csrf_token %}
+                            <button type="submit" onclick="return confirm('Delete this question?')" 
+                                class="text-red-500 hover:text-red-700 p-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="ml-9 space-y-1">
+                        {% for answer in question.answers.all %}
+                        <div class="flex items-center text-sm">
+                            {% if answer.is_correct %}
+                            <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-green-700 font-medium">{{ answer.text }}</span>
+                            {% else %}
+                            <svg class="w-4 h-4 text-gray-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-600">{{ answer.text }}</span>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="text-center py-12 text-gray-500">
+                <svg class="w-12 h-12 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <p>No questions yet. Add your first question!</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Back to My Quizzes -->
+<div class="mt-8">
+    <a href="{% url 'my_quizzes' %}" class="text-gray-600 hover:text-primary transition">
+        ← Back to My Quizzes
+    </a>
+</div>
+{% endblock %}

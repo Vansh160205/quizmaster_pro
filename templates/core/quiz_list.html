@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}All Quizzes - QuizMaster Pro{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="bg-gradient-to-r from-primary to-secondary text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+        <h1 class="text-4xl font-bold mb-4">All Quizzes</h1>
+        <p class="text-xl opacity-90">Choose a quiz and test your knowledge</p>
+    </div>
+</section>
+
+<!-- Quiz Grid -->
+<section class="py-12">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for quiz in quizzes %}
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition transform hover:-translate-y-1">
+                <div class="bg-gradient-to-r from-primary to-secondary h-2"></div>
+                <div class="p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <h3 class="text-xl font-semibold text-gray-800">{{ quiz.title }}</h3>
+                        <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full">
+                            {{ quiz.get_questions_count }} Q
+                        </span>
+                    </div>
+                    <p class="text-gray-600 mb-6">{{ quiz.description|truncatewords:25 }}</p>
+                    <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+                        <span class="text-sm text-gray-400">
+                            Created {{ quiz.created_at|date:"M d, Y" }}
+                        </span>
+                        <a href="{% url 'quiz_detail' quiz.id %}" class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-secondary transition">
+                            View Quiz
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-3">
+                <div class="text-center py-16 bg-white rounded-xl shadow">
+                    <svg class="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                    </svg>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">No Quizzes Available</h3>
+                    <p class="text-gray-600 mb-4">Check back later for new quizzes!</p>
+                    <a href="{% url 'admin:index' %}" class="text-primary font-semibold hover:text-secondary">
+                        Add quizzes via Admin Panel →
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
