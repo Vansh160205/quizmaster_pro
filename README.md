@@ -487,8 +487,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Your Name**
 
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Email: your.email@example.com
+- GitHub: [@Vansh160205](https://github.com/Vansh160205)
+- Email: vanshvagadia1602@gmail.com
 
 ---
 
