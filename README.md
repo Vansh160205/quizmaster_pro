@@ -499,11 +499,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Tailwind CSS
 - All contributors and testers
 
----
-
-<p align="center">
-  Made with ❤️ using Django and Tailwind CSS
-</p>
-```
-
----
